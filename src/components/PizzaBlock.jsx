@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
+;
 
 export default function PizzaBlock({ id, name, imageUrl, price, types, sizes }) {
   const availableNames =['тонкое', 'традиционное'];
@@ -7,11 +8,11 @@ export default function PizzaBlock({ id, name, imageUrl, price, types, sizes }) 
 
   const [selectType, setSelectItem] = useState(types[0]);
   const [selectSize, setSelectSize] = useState(sizes[0]);
-
+  // Выбор категории 
   const onSelectedType = (index) => {
     setSelectItem(index);
   }
-
+  // Выбор размера пиццы
   const onSelectSize = (index) => {
     setSelectSize(index);
   }
@@ -26,6 +27,7 @@ export default function PizzaBlock({ id, name, imageUrl, price, types, sizes }) 
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
 
+        {/* Толщина пиццы */}
         <ul>
           {availableNames.map( (item, index) => (
             <li 
@@ -40,12 +42,13 @@ export default function PizzaBlock({ id, name, imageUrl, price, types, sizes }) 
             </li>
           ))}
         </ul>
-
+        
+        {/* Размер пиццы */}
         <ul>
           {availableSize.map((size, index) => (
             <li
               key={index}
-              onClick={() => onSelectSize(index)}
+              onClick={() => onSelectSize(size)}
               className={classNames({
                 active: selectSize === size,
                 disabled: !sizes.includes(size)
@@ -55,8 +58,9 @@ export default function PizzaBlock({ id, name, imageUrl, price, types, sizes }) 
             </li>
           ))}
         </ul>
-
       </div>
+
+      {/* Цена, корзина */}
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
         <div className="button button--outline button--add">

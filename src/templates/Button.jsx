@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Button = (props) => {
   return (
-    <a 
+    <Link to='basket'
       href="/cart.html" 
       className={classNames('button', {'button--cart': props.card,})}
     > 
@@ -39,7 +40,7 @@ export const Button = (props) => {
         />
       </svg>
       <span>3</span>
-    </a>
+    </Link>
   )
 }
 

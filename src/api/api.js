@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const instance  = axios.create({
-  baseURL: 'http://localhost:3000/'
+  baseURL: 'http://localhost:3001/'
 });
 
 export const pizzaAPI = {
-  getPizza() {
-    return instance.get('db.json').then(response => response.data);
+  getPizza(category, sortBy, order) {
+    return instance.get(
+      `pizzas?
+      ${category !== null ? `category=${category}` : ''}
+      &_sort=${sortBy}&_order=${order}`
+    ).then(response => response.data);
   }
 }

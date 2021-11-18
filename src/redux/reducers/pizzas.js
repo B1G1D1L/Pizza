@@ -1,3 +1,5 @@
+import { pizzaAPI } from "../../api/api";
+
 const SET_PIZZAS = 'SET_PIZZAS';
 const SET_LOADING = 'SET_LOADING';
 
@@ -33,4 +35,16 @@ export const setPizzas = (items) => {
 export const setLoading = (loading) => {
   return ({type: SET_LOADING, payload: loading})
 }
+
+// Thunk
+export const fetchPizzas = (category, sortBy, order) => async (dispatch) => {
+  // Начало загрузки
+  dispatch(setLoading(true));
+
+  const response = await pizzaAPI.getPizza(category, sortBy, order);
+  dispatch(setPizzas(response));
+  // Конец загрузки
+  dispatch(setLoading(false));
+}
+
 
