@@ -6,6 +6,7 @@ import PizzaBlock from '../components/PizzaBlock';
 import SortPopup from '../components/SortPopup';
 import { setCategory, setFilter } from '../redux/reducers/filters';
 import { fetchPizzas } from '../redux/reducers/pizzas';
+import { addPizzaCart } from '../redux/reducers/cart';
 
 
 
@@ -14,7 +15,7 @@ export default function Home() {
   const isLoading = useSelector(state => state.pizzas.isLoading);
   const category = useSelector(state => state.filters.category);
   const sortBy = useSelector(state => state.filters.sortBy.type);
-  const order = useSelector(state => state.filters.sortBy.order);
+  const cartItems = useSelector(({cart}) => cart.items)
   
   const dispatch = useDispatch();
   
@@ -28,8 +29,13 @@ export default function Home() {
     dispatch(setFilter(obj));
   }, [sortBy])
 
+  // Добавление пиццы в корзину
+  const onAddPizza = (pizza) => {
+    dispatch(addPizzaCart(pizza))
+  }
+
   useEffect(() => {
-    dispatch(fetchPizzas(category, sortBy, order));
+    dispatch(fetchPizzas(category, sortBy));
   }, [category, sortBy])
 
   return (
@@ -52,7 +58,14 @@ export default function Home() {
       <div className="content__items">
         {isLoading 
           ? Array(12).map(item => <Preloader key={item.id} />)
-          : pizzas.map(item => <PizzaBlock key={item.id} {...item} />)
+          : pizzas.map(item => (
+            <PizzaBlock 
+              key={item.id}
+              onAddClickPizza={onAddPizza}
+              addedCount={cartItems[item.id] && cartItems[item.id].length}
+              {...item}
+             />
+          ))
         }
       </div>
     </div>

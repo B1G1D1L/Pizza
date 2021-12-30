@@ -37,14 +37,12 @@ export const setLoading = (loading) => {
 }
 
 // Thunk
-export const fetchPizzas = (category, sortBy, order) => async (dispatch) => {
+export const fetchPizzas = (category, sortBy) => async (dispatch) => {
   // Начало загрузки
   dispatch(setLoading(true));
 
-  const response = await pizzaAPI.getPizza(category, sortBy, order);
+  const response = await pizzaAPI.getPizza(category, sortBy);
   dispatch(setPizzas(response));
   // Конец загрузки
   dispatch(setLoading(false));
 }
-
-

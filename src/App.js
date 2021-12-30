@@ -14,7 +14,7 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" render={() => <Home />} />
-              <Route exact path="/basket" render={() => <Card />} />
+              <Route exact path="/cart" render={() => <Card />} />
             </Switch>
           </div>
         </div>
