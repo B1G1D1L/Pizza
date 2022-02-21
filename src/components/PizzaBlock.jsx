@@ -3,7 +3,10 @@ import React, {  useState } from 'react'
 ;
 import Button from '../templates/Button';
 
-export default function PizzaBlock({ id, name, imageUrl, price, types, sizes, onAddClickPizza, addedCount }) {
+export default function PizzaBlock(props) {
+
+  const { id, name, imageUrl, price, types, sizes, onAddClickPizza, addedCount } = props;
+
   const availableNames =['тонкое', 'традиционное'];
   const availableSize = [26, 30, 40];
 

@@ -62,7 +62,7 @@ export default function Home() {
             <PizzaBlock 
               key={item.id}
               onAddClickPizza={onAddPizza}
-              addedCount={cartItems[item.id] && cartItems[item.id].length}
+              addedCount={cartItems[item.id] && cartItems[item.id].items.length}
               {...item}
              />
           ))
