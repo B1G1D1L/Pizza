@@ -14,9 +14,8 @@ export default function Home() {
   const pizzas = useSelector(state => state.pizzas.items);
   const isLoading = useSelector(state => state.pizzas.isLoading);
   const category = useSelector(state => state.filters.category);
-  const sortBy = useSelector(state => state.filters.sortBy.type);
+  const sortBy = useSelector(state => state.filters.sortBy);
   const cartItems = useSelector(({cart}) => cart.items)
-  
   const dispatch = useDispatch();
   
   // При выборе кагерии

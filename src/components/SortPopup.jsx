@@ -8,10 +8,10 @@ const items = [
 
 export default React.memo(
   function SortPopup({ onSelectFilter, sortBy }) {
-
+ 
     const [vidiblePopup, setVidiblePopup] = useState(false);
     const sortRef = useRef(null);
-    const selectItem = items.find(item => item.type === sortBy).name;
+    const selectItem = items.find(item => item.type === sortBy.type).name;
 
     // Вкл/выкл меню сортировки
     const toggleVidivlePopup = () => {

@@ -26,16 +26,18 @@ export const cartReducer = (state = initialState, action) => {
         },
       };
       
-      const items = Object.values(newPizza).map(obj => obj.items);
-      const allPizzas = [].concat.apply([], items)
-      const totalPrice = getTotalPrice(allPizzas)
+      const totalCount = Object.keys(newPizza).reduce(
+        (sum, key) => newPizza[key].items.length + sum, 0
+      )
+      const totalPrice = Object.keys(newPizza).reduce(
+        (sum, key) => newPizza[key].totalPrice + sum, 0
+      )
 
-      console.log(newPizza)
 
       return {
         ...state,
         items: newPizza,
-        totalCount: allPizzas.length,
+        totalCount,
         totalPrice
       };
     }
