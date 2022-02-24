@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { CartItem } from '../components/CartItem';
-import { clearCart, deleteItem } from '../redux/reducers/cart';
+import { clearCart, deleteItem, minusPizza, plusPizza } from '../redux/reducers/cart';
 import CartEmptyImage from '../assets/img/empty-cart.png';
 
 function Cart() {
@@ -23,6 +23,14 @@ function Cart() {
 
   const removeItem = (id) => {
     dispatch(deleteItem(id))
+  }
+
+  const onPlusPizza = (id) => {
+    dispatch(plusPizza(id))
+  }
+
+  const onMinusPizza = (id) => {
+    dispatch(minusPizza(id))
   }
 
 
@@ -119,6 +127,8 @@ function Cart() {
                   totalCount={items[item.id].items.length}
                   totalPrice={items[item.id].totalPrice}
                   removeItem={removeItem}
+                  plusPizza={onPlusPizza}
+                  minusPizza={onMinusPizza}
                 />
               ))}
             </div>
@@ -162,15 +172,15 @@ function Cart() {
           :
           <div className="container container--cart">
             <div className="cart cart--empty">
-              <h2>Корзина пустая <icon>😕</icon></h2>
+              <h2>Корзина пустая <i>😕</i></h2>
               <p>
                 Вероятней всего, вы не заказывали ещё пиццу.<br />
                 Для того, чтобы заказать пиццу, перейди на главную страницу.
               </p>
               <img src={CartEmptyImage} alt="Empty cart" />
-              <a href="/" className="button button--black">
+              <Link to="/" className="button button--black">
                 <span>Вернуться назад</span>
-              </a>
+              </Link>
             </div>
           </div>
         }

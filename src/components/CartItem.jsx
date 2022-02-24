@@ -1,12 +1,27 @@
 import React from 'react'
 import Button from '../templates/Button'
 
-export const CartItem = ({ id, img, name, size, type, totalPrice, totalCount, removeItem }) => {
+export const CartItem = (props) => {
+
+  const { 
+    id, img, name, 
+    size, type, totalPrice,
+    totalCount, removeItem, 
+    plusPizza, minusPizza 
+  } = props
 
   const onRemoveItem = () => {
-    if(window.confirm('Вы действительно хотите удалить пиццу?')) {
+    if (window.confirm('Вы действительно хотите удалить пиццу?')) {
       removeItem(id)
     }
+  }
+
+  const onPlusPizza = () => {
+    plusPizza(id)
+  }
+
+  const onMinusPizza = () => {
+    minusPizza(id)
   }
 
   return (
@@ -23,7 +38,10 @@ export const CartItem = ({ id, img, name, size, type, totalPrice, totalCount, re
         <p>{type} тесто, {size} см.</p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div 
+          onClick={onMinusPizza}
+          className="button button--outline button--circle cart__item-count-minus"
+        >
           <svg
             width="10"
             height="10"
@@ -41,7 +59,10 @@ export const CartItem = ({ id, img, name, size, type, totalPrice, totalCount, re
           </svg>
         </div>
         <b>{totalCount}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <div
+          onClick={onPlusPizza}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <svg
             width="10"
             height="10"
