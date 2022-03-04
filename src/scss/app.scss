@@ -25,14 +25,9 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
     justify-content: space-between;
-
-    &::after {
-      content: '';
-      flex: auto;
-    }
   } 
 
   &__top {
