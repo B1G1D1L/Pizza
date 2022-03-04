@@ -55,8 +55,8 @@ export default function Home() {
       {/* Пиццы */}
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {isLoading 
-          ? Array(12).map(item => <Preloader key={item.id} />)
+        {isLoading && !pizzas.length
+          ? Array(12).fill(0).map( (_, index) => <Preloader key={index} />)  
           : pizzas.map(item => (
             <PizzaBlock 
               key={item.id}
