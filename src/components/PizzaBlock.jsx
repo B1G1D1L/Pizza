@@ -1,21 +1,24 @@
 import classNames from 'classnames';
-import React, {  useState } from 'react'
-;
+import React, {  useState, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import Button from '../templates/Button';
 
 export default function PizzaBlock(props) {
 
   const { id, name, imageUrl, price, types, sizes, onAddClickPizza, addedCount } = props;
+  const [inProp, setInProp] = useState(false);
 
   const availableNames =['тонкое', 'традиционное'];
   const availableSize = [26, 30, 40];
 
   const [selectType, setSelectItem] = useState(types[0]);
   const [selectSize, setSelectSize] = useState(sizes[0]);
+
   // Выбор категории 
   const onSelectedType = (index) => {
     setSelectItem(index);
   }
+
   // Выбор размера пиццы
   const onSelectSize = (index) => {
     setSelectSize(index);
@@ -26,7 +29,7 @@ export default function PizzaBlock(props) {
     const obj = {
       id,
       name,
-      imageUrl,
+      imageUrl,   
       price,
       size: selectSize,
       type: availableNames[selectType]
@@ -35,13 +38,26 @@ export default function PizzaBlock(props) {
     onAddClickPizza(obj)
   }
 
+  // Анимация после монитрование
+  useEffect(() => {
+    setInProp(true);
+  }, [])
+
+
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={imageUrl}
-        alt={name}
-      />
+      <CSSTransition
+        in={inProp}
+        timeout={1000}
+        classNames='pizza-img'
+        mountOnEnter
+      >
+        <img
+          className="pizza-block__image"
+          src={imageUrl}
+          alt={name}
+        />
+      </CSSTransition>
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
 

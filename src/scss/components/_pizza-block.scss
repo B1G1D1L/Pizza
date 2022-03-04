@@ -65,3 +65,13 @@
     letter-spacing: 0.015em;
   }
 }
+
+.pizza-img-enter {
+  opacity: 0;
+}
+
+.pizza-img-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in-out;
+}
+

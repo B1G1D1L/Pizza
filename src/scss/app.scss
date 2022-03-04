@@ -6,6 +6,7 @@
 
 body {
   background-color: $background;
+  overflow: scroll;
 }
 
 .wrapper {
@@ -295,10 +296,15 @@ body {
       top: 2px;
     }
 
+    &-img {
+      width: 300px;
+      height: 255px;
+      margin: 45px auto 60px;
+    }
+
     img {
       display: block;
       width: 300px;
-      margin: 45px auto 60px;
     }
 
     .button--black {
