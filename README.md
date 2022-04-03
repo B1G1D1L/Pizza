@@ -8,3 +8,4 @@
 - json-server
 - Axios
 - classnames
+- React-transition-group
